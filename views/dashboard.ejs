@@ -1,2 +1,13 @@
-<div>Welcome to Dashboard,  <%= loggedInUserData.name %>, <%= loggedInUserData.age %></div>
-<div><a href="/logout">Sign out</a></div>
+<%- include('./partials/prefix-html.ejs'); %>
+<%- include('./partials/header.ejs'); %>
+<%- include('./partials/sidebar.ejs'); %>
+
+<div>
+    Welcome to Dashboard, <%= loggedInUserData.name %>, <%= loggedInUserData.age %>
+</div>
+
+<div>
+    <a href="/logout">Sign out</a>
+</div>
+
+<%- include('./partials/suffix-html.ejs'); %>
