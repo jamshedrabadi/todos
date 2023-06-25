@@ -19,21 +19,6 @@ exports.loadLoginPage = (req, res) => {
     res.render('login.ejs');
 };
 
-exports.loadLogoutPage = (req, res, next) => {
-    req.logout((logoutError) => {
-        if (logoutError) {
-            return next(logoutError);
-        }
-        req.session.destroy((sessionLogoutError) => {
-            if (sessionLogoutError) {
-                return next(sessionLogoutError);
-            }
-            req.user = null;
-            res.redirect('/login');
-        });
-    });
-};
-
 // ---------- APIs ----------
 
 exports.authenticateUser = (req, res, next) => {
@@ -66,4 +51,19 @@ exports.authenticateUser = (req, res, next) => {
             // req.session.save(() => res.redirect('/dashboard')); // failsafe option
         });
     })(req, res, next);
+};
+
+exports.logoutUser = (req, res, next) => {
+    req.logout((logoutError) => {
+        if (logoutError) {
+            return next(logoutError);
+        }
+        req.session.destroy((sessionLogoutError) => {
+            if (sessionLogoutError) {
+                return next(sessionLogoutError);
+            }
+            req.user = null;
+            res.redirect('/login');
+        });
+    });
 };

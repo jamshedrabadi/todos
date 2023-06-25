@@ -4,7 +4,11 @@ const passport = require('passport');
 exports.initPassportConfig = () => {
     try {
         passport.use(new LocalStrategy((email, password, done) => {
-            return done(null, { name: 'JamRab', age: 20 });
+            return done(null, {
+                email: 'jamshedrabadi@gmail.com',
+                firstName: 'Jamshed',
+                lastName: 'Rabadi',
+            });
             /*
              * var user = await db.executevaluesquery("select usr_id _id,user_org_id org_id,usr_first_name first_name,usr_last_name
              * last_name,user_profile_image profile_image ,role_access.menu as menu from mst_user join role_access on

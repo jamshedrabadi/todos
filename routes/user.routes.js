@@ -8,10 +8,10 @@ const userController = require('../controllers/user.controller.js');
 router.get('/', passportConfig.isAuthenticated, userController.loadLandingPage);
 router.get('/dashboard', passportConfig.isAuthenticated, userController.loadDashboardPage);
 router.get('/login', userController.loadLoginPage);
-router.get('/logout', userController.loadLogoutPage);
 
 // ---------- APIs ----------
 
 router.post('/login', userController.authenticateUser);
+router.get('/logout', userController.logoutUser);
 
 module.exports = router;
