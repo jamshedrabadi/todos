@@ -1,0 +1,23 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-toggler sidebar-toggle btn btn-dark" id="sidebarToggle">
+            <span class="navbar-toggler-icon"></span>
+        </a>
+
+        <a class="navbar-brand" href="#">TODOS</a>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li> -->
+            </ul>
+
+            <span class="navbar-text">
+                Welcome, <%= loggedInUserData.firstName %> <%= loggedInUserData.lastName %>
+            </span>
+        </div>
+
+        <a class="btn btn-dark logout-btn" href="/logout">Log Out</a>
+    </div>
+</nav>
