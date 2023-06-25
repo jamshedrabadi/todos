@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const passport = require('passport');
 const passportConfig = require('./config/passport.js');
+const path = require('path');
 const session = require('express-session');
 
 // Load Config
@@ -39,6 +40,9 @@ app.use(session({
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 const routes = require('./routes/index.js');
