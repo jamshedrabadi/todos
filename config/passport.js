@@ -1,9 +1,9 @@
-const LocalStrategy = require('passport-local').Strategy;
-const passport = require('passport');
+import passport from 'passport';
+import { Strategy } from 'passport-local';
 
-exports.initPassportConfig = () => {
+export const initPassportConfig = () => {
     try {
-        passport.use(new LocalStrategy((email, password, done) => {
+        passport.use(new Strategy((email, password, done) => {
             return done(null, {
                 email: 'jamshedrabadi@gmail.com',
                 firstName: 'Jamshed',
@@ -41,7 +41,7 @@ exports.initPassportConfig = () => {
     }
 };
 
-exports.isAuthenticated = (req, res, next) => {
+export const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
     }

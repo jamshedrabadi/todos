@@ -1,17 +1,18 @@
-const express = require('express');
-const passportConfig = require('../config/passport.js');
+import express from 'express';
+import { isAuthenticated } from '../config/passport.js';
+import { loadLandingPage, loadDashboardPage, loadLoginPage, authenticateUser, logoutUser } from '../controllers/user.controller.js';
+
 const router = express.Router();
-const userController = require('../controllers/user.controller.js');
 
 // ---------- Views ----------
 
-router.get('/', passportConfig.isAuthenticated, userController.loadLandingPage);
-router.get('/dashboard', passportConfig.isAuthenticated, userController.loadDashboardPage);
-router.get('/login', userController.loadLoginPage);
+router.get('/', isAuthenticated, loadLandingPage);
+router.get('/dashboard', isAuthenticated, loadDashboardPage);
+router.get('/login', loadLoginPage);
 
 // ---------- APIs ----------
 
-router.post('/login', userController.authenticateUser);
-router.get('/logout', userController.logoutUser);
+router.post('/login', authenticateUser);
+router.get('/logout', logoutUser);
 
-module.exports = router;
+export default router;

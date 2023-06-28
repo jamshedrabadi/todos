@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     ENV: {
         DEVELOPMENT: 'development',
         PRODUCTION: 'production',
