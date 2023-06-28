@@ -1,4 +1,4 @@
-npm i express dotenv ejs morgan passport passport-local express-session
+npm i express dotenv ejs morgan passport passport-local express-session sequelize mysql2
 
 npm i -D nodemon jsdoc cross-env
 
