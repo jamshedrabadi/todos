@@ -6,22 +6,24 @@
         "es6": true
     },
     "extends": [
-        "semistandard",
+        "plugin:jsdoc/recommended-error",
         "plugin:node/recommended",
-        "plugin:jsdoc/recommended-error"
+        "semistandard"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "plugins": [
-        "sort-requires",
-        "jsdoc"
+        "jsdoc",
+        "sort-requires"
     ],
     "rules": {
+        "array-bracket-spacing": "error",
         "brace-style": "error",
         "camelcase": [
             "error",
@@ -32,56 +34,23 @@
                 "properties": "never"
             }
         ],
-        "no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "args": "after-used",
-                "ignoreRestSiblings": true
-            }
-        ],
-        "no-console": "error",
-        "indent": [
-            "error",
-            4
-        ],
-        "prefer-const": "error",
-        "func-names": [
-            "error",
-            "always"
-        ],
         "comma-dangle": [
             "error",
             "always-multiline"
         ],
-        "lines-between-class-members": "off",
-        "no-prototype-builtins": "off",
         "curly": [
             "error",
             "all"
         ],
-        "object-curly-spacing": "error",
-        "array-bracket-spacing": "error",
-        "quote-props": "off",
-        "promise/always-return": "off",
-        "promise/no-return-wrap": "error",
-        "promise/param-names": "error",
-        "promise/catch-or-return": "error",
-        "promise/no-nesting": "off",
-        "promise/no-promise-in-callback": "error",
-        "promise/no-callback-in-promise": [
+        "func-names": [
             "error",
-            {
-                "exceptions": [
-                    "next"
-                ]
-            }
+            "always"
         ],
-        "promise/avoid-new": "off",
-        "promise/no-new-statics": "error",
-        "promise/no-return-in-finally": "error",
-        "promise/valid-params": "error",
-        "node/no-deprecated-api": "warn",
+        "indent": [
+            "error",
+            4
+        ],
+        "lines-between-class-members": "off",
         "max-len": [
             "error",
             {
@@ -94,6 +63,38 @@
             "error",
             "starred-block"
         ],
+        "no-console": "error",
+        "no-prototype-builtins": "off",
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": true
+            }
+        ],
+        "node/no-deprecated-api": "warn",
+        "object-curly-spacing": "error",
+        "prefer-const": "error",
+        "promise/always-return": "off",
+        "promise/avoid-new": "off",
+        "promise/catch-or-return": "error",
+        "promise/no-callback-in-promise": [
+            "error",
+            {
+                "exceptions": [
+                    "next"
+                ]
+            }
+        ],
+        "promise/no-new-statics": "error",
+        "promise/no-nesting": "off",
+        "promise/no-promise-in-callback": "error",
+        "promise/no-return-in-finally": "error",
+        "promise/no-return-wrap": "error",
+        "promise/param-names": "error",
+        "promise/valid-params": "error",
+        "quote-props": "off",
         "sort-requires/sort-requires": 2
     }
 }
