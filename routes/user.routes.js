@@ -1,5 +1,5 @@
 import express from 'express';
-import { isAuthenticated } from '../config/passport.js';
+import { isAuthenticated } from '../config/passport/passport.js';
 import { loadLandingPage, loadDashboardPage, loadLoginPage, authenticateUser, logoutUser } from '../controllers/user.controller.js';
 
 const router = express.Router();

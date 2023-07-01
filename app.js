@@ -1,12 +1,12 @@
 import constants from './constants/index.js';
-import dbConfig from './config/db-config.js';
+import dbConfig from './config/database/db-config.js';
 import { config } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 import passport from 'passport';
 import path from 'path';
 import session from 'express-session';
-import { initPassportConfig } from './config/passport.js';
+import { initPassportConfig } from './config/passport/passport.js';
 import { importRoutes } from './routes/index.js';
 import { fileURLToPath } from 'url';
 
@@ -20,8 +20,7 @@ config();
 initPassportConfig();
 
 // Load DB
-const dbConnection = dbConfig(process.env.DATABASE_NAME, process.env.DATABASE_USERNAME, process.env.DATABASE_PASSWORD,
-    process.env.DATABASE_HOST, process.env.DATABASE_PORT);
+const dbConnection = dbConfig();
 
 // Init Express and Port
 const app = express();

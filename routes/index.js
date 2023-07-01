@@ -1,5 +1,5 @@
 import userRoutes from './user.routes.js';
-import { isAuthenticated } from '../config/passport.js';
+import { isAuthenticated } from '../config/passport/passport.js';
 
 export const importRoutes = (app) => {
     // Health Check
