@@ -1,11 +1,11 @@
 import constants from './constants/index.js';
 import dbConfig from './config/db-config.js';
-import { config } from 'dotenv'
+import { config } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 import passport from 'passport';
 import path from 'path';
-import session from "express-session";
+import session from 'express-session';
 import { initPassportConfig } from './config/passport.js';
 import { importRoutes } from './routes/index.js';
 import { fileURLToPath } from 'url';
