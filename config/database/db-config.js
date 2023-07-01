@@ -1,10 +1,13 @@
 import { Sequelize } from 'sequelize';
 
-export default (dbName, dbUsername, dbPassword, dbHost, dbPort) => {
-    return new Sequelize(dbName, dbUsername, dbPassword, {
-        host: dbHost,
-        port: dbPort,
-        dialect: 'mysql',
-        logging: false,
-    });
+export default () => {
+    return new Sequelize(
+        process.env.DATABASE_NAME,
+        process.env.DATABASE_USERNAME,
+        process.env.DATABASE_PASSWORD, {
+            host: process.env.DATABASE_HOST,
+            port: process.env.DATABASE_PORT,
+            dialect: 'mysql',
+            logging: false,
+        });
 };
