@@ -7,3 +7,12 @@ npm i -D eslint eslint-config-semistandard eslint-config-standard eslint-plugin-
 -----
 
 1. get data from db (static now)
+
+-----
+
+.eslintrc (for es6 syntax)
+
+"parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+},
