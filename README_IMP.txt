@@ -1,4 +1,6 @@
-npm i express dotenv ejs morgan passport passport-local express-session sequelize mysql2
+npm i express dotenv ejs morgan passport passport-local express-session sequelize sequelize-cli mysql2
+
+(sequelize version > 6 breaks import support (ES6 syntax). Downgrade to version 5.22.3)
 
 npm i -D nodemon jsdoc cross-env
 
@@ -7,12 +9,8 @@ npm i -D eslint eslint-config-semistandard eslint-config-standard eslint-plugin-
 -----
 
 1. get data from db (static now)
+2. dynamic models in db config
+3. use .sequelizerc file for migration and seed instead of --config in package
+4. validator/joi validataions
 
 -----
-
-.eslintrc (for es6 syntax)
-
-"parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-},
