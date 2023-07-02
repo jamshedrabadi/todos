@@ -1,7 +1,7 @@
-import userRoutes from './user.routes.js';
-import { isAuthenticated } from '../config/passport/passport.js';
+const passportConfig = require('../config/passport/passport.js');
+const userRoutes = require('./user.routes.js');
 
-export const importRoutes = (app) => {
+exports.importRoutes = (app) => {
     // Health Check
     app.get('/health', (req, res) => {
         res.sendStatus(200);
@@ -11,7 +11,7 @@ export const importRoutes = (app) => {
     app.use('/', userRoutes);
 
     // Wildcard to handle unregisted routes (keep this at the end of the function)
-    app.use('*', isAuthenticated, (req, res) => {
+    app.use('*', passportConfig.isAuthenticated, (req, res) => {
         res.render('errors/404.ejs', {
             errorMessage: 'Page Not Found',
         });

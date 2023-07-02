@@ -4,13 +4,13 @@
  * @param {object} DataTypes - data types
  * @returns {object} - model
  */
-export const Todos = (Sequelize, DataTypes) => {
+const Todos = (Sequelize, DataTypes) => {
     return Sequelize.define('todos', {
         id: {
             type: DataTypes.UUID,
             primaryKey: true,
             allowNull: false,
-            defaultValue: Sequelize.literal('uuid_generate_v4()'),
+            defaultValue: Sequelize.UUIDV4,
         },
         title: {
             type: DataTypes.STRING,
@@ -36,3 +36,5 @@ export const Todos = (Sequelize, DataTypes) => {
         tableName: 'todos',
     });
 };
+
+module.exports = Todos;

@@ -1,18 +1,18 @@
-import passport from 'passport';
+const passport = require('passport');
 
 // ---------- Views ----------
 
-export const loadLandingPage = (req, res) => {
+exports.loadLandingPage = (req, res) => {
     return res.redirect('/dashboard');
 };
 
-export const loadDashboardPage = (req, res) => {
+exports.loadDashboardPage = (req, res) => {
     res.render('dashboard.ejs', {
         loggedInUserData: req.user,
     });
 };
 
-export const loadLoginPage = (req, res) => {
+exports.loadLoginPage = (req, res) => {
     if (req.user) {
         return res.redirect('/dashboard');
     }
@@ -21,7 +21,7 @@ export const loadLoginPage = (req, res) => {
 
 // ---------- APIs ----------
 
-export const authenticateUser = (req, res, next) => {
+exports.authenticateUser = (req, res, next) => {
     //     /*
     //      * const validationErrors = [];
     //      * if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
@@ -53,7 +53,7 @@ export const authenticateUser = (req, res, next) => {
     })(req, res, next);
 };
 
-export const logoutUser = (req, res, next) => {
+exports.logoutUser = (req, res, next) => {
     req.logout((logoutError) => {
         if (logoutError) {
             return next(logoutError);

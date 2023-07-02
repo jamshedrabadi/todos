@@ -1,26 +1,19 @@
-import constants from './constants/index.js';
-import dbConfig from './config/database/db-config.js';
-import { config } from 'dotenv';
-import express from 'express';
-import morgan from 'morgan';
-import passport from 'passport';
-import path from 'path';
-import session from 'express-session';
-import { initPassportConfig } from './config/passport/passport.js';
-import { importRoutes } from './routes/index.js';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const constants = require('./constants/index.js');
+const dbConfig = require('./config/database/db-config.js');
+const dotenv = require('dotenv');
+const express = require('express');
+const morgan = require('morgan');
+const passport = require('passport');
+const passportConfig = require('./config/passport/passport.js');
+const path = require('path');
+const routes = require('./routes/index.js');
+const session = require('express-session');
 
 // Load Config
-config();
+dotenv.config();
 
 // Passport Config
-initPassportConfig();
-
-// Load DB
-const dbConnection = dbConfig();
+passportConfig.initPassportConfig();
 
 // Init Express and Port
 const app = express();
@@ -54,23 +47,19 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-importRoutes(app);
+routes.importRoutes(app);
 
 // eslint-disable-next-line no-console
 app.listen(port, console.log(`Server running on ${process.env.NODE_ENV} environment on port ${port}`));
 
 // Establish DB Connection
-try {
-    await dbConnection.sync();
-    // eslint-disable-next-line no-console
-    console.log('Connected to the database');
-} catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('Failed to connect the database', error);
-}
-
-// export example = () => {}
-
-// exports.example = function example() { };
-
-// export function example() { }
+(async () => {
+    try {
+        await dbConfig.sequelize.sync();
+        // eslint-disable-next-line no-console
+        console.log('Connected to the database');
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Failed to connect the database', error);
+    }
+})();

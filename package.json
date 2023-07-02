@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "List of Todos",
   "main": "app.js",
-  "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
-    "dev": "cross-env NODE_ENV=development nodemon app.js -e js,ejs,json",
+    "start": "cross-env NODE_ENV=production npm run db:migrate && npm run db:seed && node app.js",
+    "dev": "cross-env NODE_ENV=development npm run db:migrate && npm run db:seed && nodemon app.js -e js,ejs,json",
+    "db:migrate": "npx sequelize --config config/database/db-credentials.js db:migrate",
+    "db:seed": "npx sequelize --config config/database/db-credentials.js db:seed:all",
     "lint": "eslint ./"
   },
   "author": "Jamshed Rabadi",
@@ -20,7 +21,8 @@
     "mysql2": "^3.4.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
