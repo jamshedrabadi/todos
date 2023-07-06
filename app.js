@@ -17,7 +17,7 @@ passportConfig.initPassportConfig();
 
 // Init Express and Port
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Body Parser
 app.use(express.json());
@@ -53,13 +53,4 @@ routes.importRoutes(app);
 app.listen(port, console.log(`Server running on ${process.env.NODE_ENV} environment on port ${port}`));
 
 // Establish DB Connection
-(async () => {
-    try {
-        await dbConfig.sequelize.sync();
-        // eslint-disable-next-line no-console
-        console.log('Connected to the database');
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log('Failed to connect the database', error);
-    }
-})();
+dbConfig.connect();

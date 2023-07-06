@@ -4,10 +4,12 @@
   "description": "List of Todos",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production npm run db:migrate && npm run db:seed && node app.js",
-    "dev": "cross-env NODE_ENV=development npm run db:migrate && npm run db:seed && nodemon app.js -e js,ejs,json",
+    "dev": "npm run db:migrate && npm run db:seed && npm run dev:start",
+    "start": "npm run db:migrate && npm run db:seed && npm run prod:start",
     "db:migrate": "npx sequelize --config config/database/db-credentials.js db:migrate",
     "db:seed": "npx sequelize --config config/database/db-credentials.js db:seed:all",
+    "dev:start": "cross-env NODE_ENV=development nodemon app.js -e js,ejs,json",
+    "prod:start": "cross-env NODE_ENV=production node app.js",
     "lint": "eslint ./"
   },
   "author": "Jamshed Rabadi",
