@@ -8,8 +8,8 @@
     "start": "npm run db:migrate && npm run db:seed && npm run prod:start",
     "db:migrate": "npx sequelize --config config/database/db-credentials.js db:migrate",
     "db:seed": "npx sequelize --config config/database/db-credentials.js db:seed:all",
-    "dev:start": "cross-env NODE_ENV=development nodemon app.js -e js,ejs,json",
-    "prod:start": "cross-env NODE_ENV=production node app.js",
+    "dev:start": "nodemon app.js -e js,ejs,json,css",
+    "prod:start": "node app.js",
     "lint": "eslint ./"
   },
   "author": "Jamshed Rabadi",
@@ -27,7 +27,6 @@
     "sequelize-cli": "^6.6.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "eslint": "^8.43.0",
     "eslint-config-semistandard": "^17.0.0",
     "eslint-config-standard": "^17.1.0",

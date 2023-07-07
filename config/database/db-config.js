@@ -14,6 +14,12 @@ const sequelize = new Sequelize(
         port: process.env.DATABASE_PORT,
         dialect: 'mysql',
         logging: false,
+        define: {
+            freezeTableName: false, // prevent pluralizing table names
+        },
+        query: {
+            raw: true, // sends datavalues directly as resultset (bypasses custom getters and setters)
+        },
     });
 
 const modelPath = path.join(__dirname, '../../models');
