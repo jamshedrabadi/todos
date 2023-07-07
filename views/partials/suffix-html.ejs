@@ -2,8 +2,6 @@
         </div>
     </div>
 
-    <%- include('./footer-links.ejs'); %>
-
     <script>
         // Persist sidebar toggle between refreshes
         $(document).ready(() => {
@@ -13,7 +11,7 @@
         });
 
         // Sidebar toggler
-        $('#sidebarToggle').click((event) => {
+        $('#sidebar-toggle').click((event) => {
             event.preventDefault();
             $('body').toggleClass('sidenav-toggled');
             localStorage.setItem('sidebarToggled', $('body').hasClass('sidenav-toggled'));
