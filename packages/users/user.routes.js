@@ -1,6 +1,6 @@
 const express = require('express');
-const passportConfig = require('../config/passport/passport.js');
-const userController = require('../controllers/user.controller.js');
+const passportConfig = require('../../config/passport/passport.js');
+const userController = require('./user.controller.js');
 
 const router = express.Router();
 

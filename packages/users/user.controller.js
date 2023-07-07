@@ -7,7 +7,7 @@ exports.loadLandingPage = (req, res) => {
 };
 
 exports.loadDashboardPage = (req, res) => {
-    res.render('dashboard.ejs', {
+    return res.render('dashboard.ejs', {
         loggedInUserData: req.user,
     });
 };
@@ -16,25 +16,23 @@ exports.loadLoginPage = (req, res) => {
     if (req.user) {
         return res.redirect('/dashboard');
     }
-    res.render('login.ejs');
+    return res.render('login.ejs');
 };
 
 // ---------- APIs ----------
 
 exports.authenticateUser = (req, res, next) => {
-    //     /*
-    //      * const validationErrors = [];
-    //      * if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
-    //      * if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' });
-    //      */
-
-    //     /*
-    //      * if (validationErrors.length) {
-    //      * req.flash('errors', validationErrors);
-    //      * return res.redirect('/login');
-    //      * }
-    //      * req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
-    //      */
+    /*
+     * const validationErrors = [];
+     * if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
+     * if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' });
+     *
+     * if (validationErrors.length) {
+     * req.flash('errors', validationErrors);
+     * return res.redirect('/login');
+     * }
+     * req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
+     */
 
     passport.authenticate('local', (userAuthError, user) => {
         if (userAuthError) {
@@ -63,7 +61,7 @@ exports.logoutUser = (req, res, next) => {
                 return next(sessionLogoutError);
             }
             req.user = null;
-            res.redirect('/login');
+            return res.redirect('/login');
         });
     });
 };

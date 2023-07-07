@@ -7,10 +7,9 @@
 const Todos = (Sequelize, DataTypes) => {
     return Sequelize.define('todos', {
         id: {
-            type: DataTypes.UUID,
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            allowNull: false,
-            defaultValue: Sequelize.UUIDV4,
+            autoIncrement: true,
         },
         title: {
             type: DataTypes.STRING,
@@ -22,15 +21,10 @@ const Todos = (Sequelize, DataTypes) => {
         },
         comments: {
             type: DataTypes.TEXT,
-            allowNull: true,
         },
         status: {
             type: DataTypes.ENUM(Object.values(['public', 'private'])),
             defaultValue: 'public',
-        },
-        created_at: {
-            type: DataTypes.DATE,
-            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
     }, {
         tableName: 'todos',

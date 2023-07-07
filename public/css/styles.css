@@ -46,6 +46,10 @@ body {
     transition: margin 0.25s ease-out;
 }
 
+.sidebar-item {
+    border-bottom: 1px solid #e9ecef !important;
+}
+
 /* Sidebar collapsed */
 
 body.sidenav-toggled #wrapper #sidebar-wrapper {
@@ -54,4 +58,20 @@ body.sidenav-toggled #wrapper #sidebar-wrapper {
 
 body.sidenav-toggled #wrapper #page-content-wrapper {
     margin-left: 0;
+}
+
+/* ---------- Content ---------- */
+
+.main-content {
+    margin: 20px;
+    width: auto;
+}
+
+.table-cell {
+    padding: 1rem 0.5rem !important;
+}
+
+.icon-action {
+    font-size: 20px;
+    margin: 0 5px;
 }
