@@ -17,14 +17,11 @@ const Todos = (Sequelize, DataTypes) => {
         },
         body: {
             type: DataTypes.TEXT,
-            allowNull: false,
-        },
-        comments: {
-            type: DataTypes.TEXT,
         },
         status: {
-            type: DataTypes.ENUM(Object.values(['public', 'private'])),
-            defaultValue: 'public',
+            type: DataTypes.ENUM(Object.values(['active', 'inactive'])),
+            defaultValue: 'active',
+            allowNull: false,
         },
     }, {
         tableName: 'todos',

@@ -2,23 +2,7 @@
         </div>
     </div>
 
-    <%- include('./footer-links.ejs'); %>
-
-    <script>
-        // Persist sidebar toggle between refreshes
-        $(document).ready(() => {
-            if (localStorage.getItem('sidebarToggled') === 'true') {
-                $('body').toggleClass('sidenav-toggled');
-            }
-        });
-
-        // Sidebar toggler
-        $('#sidebarToggle').click((event) => {
-            event.preventDefault();
-            $('body').toggleClass('sidenav-toggled');
-            localStorage.setItem('sidebarToggled', $('body').hasClass('sidenav-toggled'));
-        });
-    </script>
+    <%- include('./common-scripts.ejs'); %>
 </body>
 
 </html>
