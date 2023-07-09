@@ -2,26 +2,7 @@
         </div>
     </div>
 
-    <script>
-        // Persist sidebar toggle between refreshes
-        $(document).ready(() => {
-            if (localStorage.getItem('sidebarToggled') === 'true') {
-                $('body').toggleClass('sidenav-toggled');
-            }
-        });
-
-        // Sidebar toggler
-        $('#sidebar-toggle').click((event) => {
-            event.preventDefault();
-            $('body').toggleClass('sidenav-toggled');
-            localStorage.setItem('sidebarToggled', $('body').hasClass('sidenav-toggled'));
-        });
-
-        // Start loader on sidebar item click
-        $('.sidebar-item').click((event) => {
-            $(".loader").css("display", "block");
-        });
-    </script>
+    <%- include('./common-scripts.ejs'); %>
 </body>
 
 </html>
