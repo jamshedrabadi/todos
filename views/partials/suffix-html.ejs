@@ -16,6 +16,11 @@
             $('body').toggleClass('sidenav-toggled');
             localStorage.setItem('sidebarToggled', $('body').hasClass('sidenav-toggled'));
         });
+
+        // Start loader on sidebar item click
+        $('.sidebar-item').click((event) => {
+            $(".loader").css("display", "block");
+        });
     </script>
 </body>
 
