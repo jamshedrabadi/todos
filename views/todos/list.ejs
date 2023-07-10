@@ -1,12 +1,29 @@
 <%- include('../partials/prefix-html.ejs'); %>
-<%- include('../partials/header.ejs', { loggedInUserData }); %>
+<%- include('../partials/navbar.ejs', { loggedInUserData }); %>
 <%- include('../partials/sidebar.ejs'); %>
 
 <!-- View Start -->
 
-<% if (todos.length) { %>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="page-header-cell">
+                    <h2 class="page-header">Todos</h2>
+                </th>
+                <th class="page-header-cell page-header-cell-add-btn">
+                    <button class="btn btn-primary">
+                        <span class="page-header-cell-add-btn-text">Add</span>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
 <div class="table-responsive">
     <table class="table table-bordered">
+        <% if (todos.length) { %>
         <thead>
             <tr>
                 <th class="table-cell">Title</th>
@@ -17,7 +34,7 @@
             </tr>
         </thead>
         <tbody>
-            <% todos.forEach(todo => { %>
+            <% todos.forEach((todo) => { %>
             <tr>
                 <td class="table-cell"><%- todo.title %></td>
                 <td class="table-cell"><%- todo.body %></td>
@@ -30,13 +47,15 @@
             </tr>
             <% }); %>
         </tbody>
+        <% } else { %>
+        <thead>
+            <tr>
+                <th class="table-cell text-center">No Data Found</th>
+            </tr>
+        </thead>
+        <% } %>
     </table>
 </div>
-<% } else { %>
-<div class="" style="text-align: center">
-    <b>No Data Found</b>
-</div>
-<% } %>
 
 <!-- View End -->
 

@@ -1,6 +1,6 @@
 <script>
-    // Persist sidebar toggle between refreshes
     $(document).ready(() => {
+        // Persist sidebar toggle between refreshes
         if (localStorage.getItem('sidebarToggled') === 'true') {
             $('body').toggleClass('sidenav-toggled');
         }

@@ -1,0 +1,40 @@
+#wrapper {
+    overflow-x: hidden;
+}
+
+/* Default - Sidebar shown */
+
+#wrapper #sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: 0;
+    transition: margin 0.25s ease-out;
+    position: fixed;
+}
+
+#wrapper #sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#wrapper #sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#wrapper #page-content-wrapper {
+    margin-left: 15rem;
+    transition: margin 0.25s ease-out;
+}
+
+.sidebar-item {
+    border-bottom: 1px solid #e9ecef !important;
+}
+
+/* Sidebar collapsed */
+
+body.sidenav-toggled #wrapper #sidebar-wrapper {
+    margin-left: -15rem;
+}
+
+body.sidenav-toggled #wrapper #page-content-wrapper {
+    margin-left: 0;
+}
