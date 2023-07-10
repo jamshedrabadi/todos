@@ -1,0 +1,38 @@
+@import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+/* ---------- Content ---------- */
+
+.main-content {
+    margin: 20px;
+    width: auto;
+}
+
+.page-header {
+    margin: 0;
+}
+
+.table-cell {
+    padding: 1rem 1rem !important;
+}
+
+.page-header-cell {
+    padding: 1rem 1rem !important;
+}
+
+.page-header-cell-add-btn {
+    text-align: right;
+}
+
+.page-header-cell-add-btn-text {
+    margin: 20px;
+}
+
+.icon-action {
+    font-size: 20px;
+    margin: 0 5px;
+}

@@ -1,0 +1,9 @@
+.sidebar-toggle {
+    display: block !important;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.logout-btn {
+    margin-left: 20px;
+}
