@@ -2,6 +2,7 @@ const constants = require('./constants/index.js');
 const dbConfig = require('./config/database/db-config.js');
 const dotenv = require('dotenv');
 const express = require('express');
+const flash = require('express-flash');
 const morgan = require('morgan');
 const passport = require('passport');
 const passportConfig = require('./config/passport/passport.js');
@@ -42,6 +43,9 @@ app.use(session({
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Initialize express flash for messaages
+app.use(flash());
 
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,30 +1,23 @@
+const errorConstants = require('../../constants/errors.js');
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
+const userService = require('../../packages/users/user.service.js');
 
 exports.initPassportConfig = () => {
     try {
-        passport.use(new LocalStrategy((email, password, done) => {
+        passport.use(new LocalStrategy(async (email, password, done) => {
+            const user = await userService.authenticateUser(email, password);
+            if (!user) {
+                return done(null, false, { errorMessage: errorConstants.USER.INVALID_USERNAME_PASSWORD });
+            }
+            if (user.status === 'inactive') {
+                return done(null, false, { errorMessage: errorConstants.USER.USER_DISABLED });
+            }
             return done(null, {
-                email: 'jamshedrabadi@gmail.com',
-                firstName: 'Jamshed',
-                lastName: 'Rabadi',
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
             });
-            /*
-             * var user = await db.executevaluesquery('select usr_id _id,user_org_id org_id,usr_first_name first_name,usr_last_name
-             * last_name,user_profile_image profile_image ,role_access.menu as menu from mst_user join role_access on
-             * mst_user.usr_role_code = role_access.role_code where user_status=1 and usr_email_id=? and
-             * usr_password=sha1(?)', [email, password]);
-             * if (user.lenght == 0) {
-             *     return done(null, false, { msg: `UserName and Password not found` });
-             * } else {
-             *     if (user[0] == undefined) {
-             *         user.menues = JSON.parse(user[0].menu);
-             *         return done(null, false, { msg: `UserName and Password not found` });
-             *     } else {
-             *         user[0].menues = JSON.parse(user[0].menu);
-             *     }
-             * }
-             */
         }));
 
         passport.serializeUser((user, done) => {
