@@ -16,7 +16,7 @@ exports.loadLoginPage = (req, res) => {
     if (req.user) {
         return res.redirect('/dashboard');
     }
-    return res.render('login.ejs');
+    return res.render('login.ejs', { myerrors: req.flash('loginErrors') });
 };
 
 // ---------- APIs ----------
@@ -34,11 +34,12 @@ exports.authenticateUser = (req, res, next) => {
      * req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false });
      */
 
-    passport.authenticate('local', (userAuthError, user) => {
+    passport.authenticate('local', (userAuthError, user, info) => {
         if (userAuthError) {
             return next(userAuthError);
         }
         if (!user) {
+            req.flash('loginErrors', info);
             return res.redirect('/login');
         }
         req.logIn(user, (userLoginError) => {

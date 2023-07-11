@@ -53,6 +53,7 @@ const connect = async () => {
 };
 
 module.exports = {
+    Sequelize,
     sequelize,
     models,
     connect,
