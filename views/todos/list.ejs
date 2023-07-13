@@ -8,12 +8,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th class="page-header-cell">
-                    <h2 class="page-header">Todos</h2>
+                <th class="page-header-content">
+                    <h2 class="page-header-text">Todos</h2>
                 </th>
-                <th class="page-header-cell page-header-cell-add-btn">
+                <th class="page-header-content page-header-btn">
                     <a class="btn btn-dark" href="/todos/add">
-                        <span class="page-header-cell-add-btn-text">Add</span>
+                        <span class="page-header-add-btn-text">Add</span>
+                        <i class="fa fa-circle-plus page-header-add-btn-icon"></i>
                     </a>
                 </th>
             </tr>
@@ -39,10 +40,10 @@
                 <td class="table-cell"><%- todo.title %></td>
                 <td class="table-cell"><%- todo.body %></td>
                 <td class="table-cell"><%- todo.status %></td>
-                <td class="table-cell"><%- moment(todo.createdAt).format('DD-MM-YYYY HH:mm:ss') %></td>
+                <td class="table-cell"><%- moment(todo.createdAt).format('MMMM Do, YYYY HH:mm:ss') %></td>
                 <td class="table-cell">
-                    <span class="fa fa-edit icon-action"></span>
-                    <span class="fa fa-trash icon-action"></span>
+                    <i class="fa fa-edit icon-action"></i>
+                    <i class="fa fa-trash icon-action"></i>
                 </td>
             </tr>
             <% }); %>

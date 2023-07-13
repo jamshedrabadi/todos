@@ -10,7 +10,7 @@ exports.loadTodoLandingPage = (req, res) => {
 
 exports.loadTodoListPage = async (req, res) => {
     try {
-        const todos = await todoService.getAllTodos();
+        const todos = await todoService.getAllUserTodos(req.user.id);
         return res.render('todos/list.ejs', {
             loggedInUserData: req.user,
             moment,
@@ -23,4 +23,14 @@ exports.loadTodoListPage = async (req, res) => {
     }
 };
 
+exports.loadTodoAddPage = async (req, res) => {
+    return res.render('todos/add.ejs', {
+        loggedInUserData: req.user,
+    });
+};
+
 // ---------- APIs ----------
+
+exports.addTodo = async (req, res) => {
+    console.log('---in-controller--- ', req.body);
+};

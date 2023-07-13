@@ -18,6 +18,14 @@ const Todos = (Sequelize, DataTypes) => {
         body: {
             type: DataTypes.TEXT,
         },
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Users',
+                key: 'id',
+            },
+        },
         status: {
             type: DataTypes.ENUM(Object.values(['active', 'inactive'])),
             defaultValue: 'active',

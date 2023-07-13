@@ -22,7 +22,7 @@ const port = process.env.PORT || 3001;
 
 // Body Parser
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Logger
 if (process.env.NODE_ENV === constants.ENV.DEVELOPMENT) {

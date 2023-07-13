@@ -1,0 +1,106 @@
+<%- include('../partials/prefix-html.ejs'); %>
+<%- include('../partials/navbar.ejs', { loggedInUserData }); %>
+<%- include('../partials/sidebar.ejs'); %>
+
+<!-- View Start -->
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="page-header-content">
+                    <h2 class="page-header-text">Add Todo</h2>
+                </th>
+                <th class="page-header-content page-header-btn">
+                    <a class="btn btn-dark" href="/todos/list">
+                        <i class="fa fa-circle-left page-header-back-btn-icon"></i>
+                        <span class="page-header-back-btn-text">Back</span>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<form name="todoForm" id="todoForm">
+    <div class="form-section mb-3">
+        <div class="row mb-4 form-row">
+            <div class="col-md-6">
+                <label for="title" class="form-label form-label-text">Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="col-md-6">
+                <label for="body" class="form-label form-label-text">Body</label>
+                <input type="text" class="form-control" id="body" name="body">
+            </div>
+        </div>
+        <div class="row mb-4 form-row">
+            <div class="col-md-6">
+                <label for="status" class="form-label form-label-text">Status</label>
+                <select class="form-select" name="status" id="status">
+                    <option>Choose an option</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">InActive</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="form-footer-content">
+                        <button type="button" class="btn btn-dark form-footer-btn" id="todo-form-submit">
+                            <span class="form-footer-btn-text">Submit</span>
+                        </button>
+                        <button type="button" class="btn btn-dark form-footer-btn" id="todo-form-reset">
+                            <span class="form-footer-btn-text">Reset</span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</form>
+
+<!-- View End -->
+
+<%- include('../partials/footer-links.ejs'); %>
+
+<!-- Scripts Start -->
+
+<script>
+    $('#todo-form-submit').click((event) => {
+        $(".loader").css("display", "block");
+        console.log('---', event);
+        console.log('--- after event print');
+        const data = new FormData();
+        // $("#todoForm:input").each((input) => {
+        //     console.log('input --- ', input);
+        // })
+        $("#todoForm input, #todoForm select, #todoForm textarea").each((index, elememt) => {
+            console.log('new new input --- ', index, '---', elememt, '---', elememt.name, '---', elememt.value);
+            data.append(elememt.name, elememt.value);
+        });
+        console.log('------final---', data);
+        for (let [key, value] of data.entries()) {
+            console.log('---final222---', key, value);
+        }
+        $.ajax({
+            url: '/todos/addTodo',
+            type: 'POST',
+            data: data,
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+        }).done((resp) => {
+            console.log('done --- ', resp);
+        });
+    })
+</script>
+
+<!-- Scripts End -->
+
+<%- include('../partials/suffix-html.ejs'); %>

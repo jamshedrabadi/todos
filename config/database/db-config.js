@@ -1,6 +1,4 @@
 const dotenv = require('dotenv');
-const fs = require('fs');
-const path = require('path');
 const Sequelize = require('sequelize');
 
 // Load Config
@@ -22,18 +20,27 @@ const sequelize = new Sequelize(
         },
     });
 
-const modelPath = path.join(__dirname, '../../models');
-const models = {};
+/*
+ * Below code automatically fetches and syncs models in alphabetical order, with the possibility of foreign key constraints
+ * failing if a referencing table is created before the table it reference (SQL Error: failed to open the referenced table)
+ *
+ * const modelPath = path.join(__dirname, '../../models');
+ * const models = {};
+ *
+ * fs.readdirSync(modelPath).filter(file => (
+ *     file.slice(-3) === '.js' && // include js files only
+ *     file.indexOf('.') !== 0 && // exclude files starting with '.'
+ *     file.indexOf('.test.js') === -1 // exlude test files
+ * )).forEach(file => {
+ *     const model = require(path.join(modelPath, file))(sequelize, Sequelize.DataTypes);
+ *     models[model.name] = model;
+ * });
+ */
 
-// Dynamically require models
-fs.readdirSync(modelPath).filter(file => (
-    file.slice(-3) === '.js' && // include js files only
-    file.indexOf('.') !== 0 && // exclude files starting with '.'
-    file.indexOf('.test.js') === -1 // exlude test files
-)).forEach(file => {
-    const model = require(path.join(modelPath, file))(sequelize, Sequelize.DataTypes);
-    models[model.name] = model;
-});
+const models = {
+    users: require('../../models/users.model.js')(sequelize, Sequelize.DataTypes),
+    todos: require('../../models/todos.model.js')(sequelize, Sequelize.DataTypes),
+};
 
 Object.keys(models).forEach(model => {
     if (models[model].associate) {
