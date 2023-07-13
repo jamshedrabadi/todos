@@ -2,7 +2,6 @@ const db = require('../../config/database/db-config.js');
 
 exports.authenticateUser = async (email, password) => {
     try {
-        await db.addLoadTime(1000);
         return await db.models.users.findOne({
             attributes: ['email', 'firstName', 'lastName', 'status'],
             where: {
