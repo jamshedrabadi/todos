@@ -12,7 +12,7 @@ router.get('/login', userController.loadLoginPage);
 
 // ---------- APIs ----------
 
-router.post('/login', userController.authenticateUser);
+router.post('/login', userController.loginUser);
 router.get('/logout', userController.logoutUser);
 
 module.exports = router;

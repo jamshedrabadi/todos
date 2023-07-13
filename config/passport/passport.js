@@ -14,6 +14,7 @@ exports.initPassportConfig = () => {
                 return done(null, false, { errorMessage: errorConstants.USER.USER_DISABLED });
             }
             return done(null, {
+                id: user.id,
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,

@@ -3,7 +3,7 @@ const db = require('../../config/database/db-config.js');
 exports.authenticateUser = async (email, password) => {
     try {
         return await db.models.users.findOne({
-            attributes: ['email', 'firstName', 'lastName', 'status'],
+            attributes: ['id', 'email', 'firstName', 'lastName', 'status'],
             where: {
                 [db.Sequelize.Op.and]: [
                     { email },

@@ -1,4 +1,4 @@
-npm i express dotenv ejs morgan moment passport passport-local express-session sequelize sequelize-cli mysql2 express-flash
+npm i express dotenv ejs morgan moment passport passport-local express-session sequelize sequelize-cli mysql2 express-flash multer
 
 (sequelize version > 6 breaks import support (ES6 syntax). Downgrade to version 5.22.3)
 
@@ -19,8 +19,8 @@ timestamps: false
 
 -----
 
-- get user data from db (static now)
-- show only user specific data
+- check alternatives to multer
+- show only user specific data (add userid in add/edit)
 - comments as array
 - check validations during insert/update
 - check user validations during user specific data insert/update

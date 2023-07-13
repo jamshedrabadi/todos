@@ -16,12 +16,14 @@ exports.loadLoginPage = (req, res) => {
     if (req.user) {
         return res.redirect('/dashboard');
     }
-    return res.render('login.ejs', { myerrors: req.flash('loginErrors') });
+    return res.render('login.ejs', {
+        myerrors: req.flash('loginErrors'),
+    });
 };
 
 // ---------- APIs ----------
 
-exports.authenticateUser = (req, res, next) => {
+exports.loginUser = (req, res, next) => {
     /*
      * const validationErrors = [];
      * if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
