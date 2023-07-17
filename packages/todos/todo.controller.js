@@ -33,4 +33,5 @@ exports.loadTodoAddPage = async (req, res) => {
 
 exports.addTodo = async (req, res) => {
     console.log('---in-controller--- ', req.body);
+    return res.status(200).send({ status: 'done' });
 };

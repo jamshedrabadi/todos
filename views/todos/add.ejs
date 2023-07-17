@@ -71,33 +71,43 @@
 <!-- Scripts Start -->
 
 <script>
-    $('#todo-form-submit').click((event) => {
-        $(".loader").css("display", "block");
-        console.log('---', event);
-        console.log('--- after event print');
-        const data = new FormData();
-        // $("#todoForm:input").each((input) => {
-        //     console.log('input --- ', input);
-        // })
-        $("#todoForm input, #todoForm select, #todoForm textarea").each((index, elememt) => {
-            console.log('new new input --- ', index, '---', elememt, '---', elememt.name, '---', elememt.value);
-            data.append(elememt.name, elememt.value);
-        });
-        console.log('------final---', data);
-        for (let [key, value] of data.entries()) {
-            console.log('---final222---', key, value);
+    const showToast = (type, position, message) => {
+        toastr.options.timeOut = 600000; // show duration
+        toastr.options.extendedTimeOut = 600000; // show duration after hover
+        toastr.options.showDuration = 500; // fade in
+        toastr.options.hideDuration = 500; // fade out
+        toastr.options.positionClass = position; // toast-top-left, toast-top-right, toast-bottom-left, toast-bottom-right, toast-top-full-width, toast-bottom-full-width
+        toastr[type](message); // success, info, warning, error
+    };
+
+    $('#todo-form-submit').click(async (event) => {
+        try {
+            $(".loader").css("display", "block");
+            const data = new FormData();
+            $("#todoForm input, #todoForm select, #todoForm textarea").each((index, elememt) => {
+                data.append(elememt.name, elememt.value);
+            });
+            // for (let [key, value] of data.entries()) {
+            //     console.log('---final222---', key, value);
+            // }
+            console.log('---before-aaa-----');
+            const requestParams = {
+                url: '/todos/addTodo',
+                type: 'POST',
+                data: data,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+            };
+            const responseData = await $.ajax(requestParams);
+            $(".loader").css("display", "none");
+            console.log('---responseData---', responseData);
+            showToast('success', 'toast-top-right', 'succ');
+            console.log('---after-after-notif---');
+        } catch (error) {
+            // console.log(error);
         }
-        $.ajax({
-            url: '/todos/addTodo',
-            type: 'POST',
-            data: data,
-            enctype: 'multipart/form-data',
-            processData: false,
-            contentType: false,
-            cache: false,
-        }).done((resp) => {
-            console.log('done --- ', resp);
-        });
     })
 </script>
 

@@ -1,4 +1,4 @@
-npm i express dotenv ejs morgan moment passport passport-local express-session sequelize sequelize-cli mysql2 express-flash multer
+npm i express dotenv ejs morgan moment passport passport-local express-session sequelize sequelize-cli mysql2 express-flash multer toastr
 
 (sequelize version > 6 breaks import support (ES6 syntax). Downgrade to version 5.22.3)
 
